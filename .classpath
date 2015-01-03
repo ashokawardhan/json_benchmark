@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
+	<classpathentry kind="lib" path="jackson-core-2.4.2.jar"/>
+	<classpathentry kind="lib" path="jackson-databind-2.4.2.jar"/>
+	<classpathentry kind="lib" path="jackson-annotations-2.4.0.jar"/>
+	<classpathentry kind="lib" path="commons-io-2.3.jar"/>
+	<classpathentry kind="lib" path="gson-2.3.1.jar"/>
+	<classpathentry kind="lib" path="jackson-module-afterburner-2.5.0.jar"/>
+	<classpathentry kind="lib" path="json-lib-2.4-jdk15.jar" sourcepath="json-lib-2.4-jdk15-sources.jar"/>
+	<classpathentry kind="lib" path="commons-beanutils-1.9.2.jar"/>
+	<classpathentry kind="lib" path="commons-collections4-4.0.jar"/>
+	<classpathentry kind="lib" path="commons-lang3-3.3.2.jar"/>
+	<classpathentry kind="lib" path="commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="ezmorph-1.0.6.jar"/>
+	<classpathentry kind="lib" path="/root/workspace/jackson_json/commons-lang-2.6.jar"/>
+	<classpathentry kind="lib" path="/root/workspace/jackson_json/commons-collections-3.2.1.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
