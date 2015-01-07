@@ -6,7 +6,7 @@
 	<classpathentry kind="lib" path="jackson-databind-2.4.2.jar"/>
 	<classpathentry kind="lib" path="jackson-annotations-2.4.0.jar"/>
 	<classpathentry kind="lib" path="commons-io-2.3.jar"/>
-	<classpathentry kind="lib" path="gson-2.3.1.jar"/>
+	<classpathentry kind="lib" path="gson-2.3.1.jar" sourcepath="/root/Downloads/gson-2.3.1-sources.jar"/>
 	<classpathentry kind="lib" path="jackson-module-afterburner-2.5.0.jar"/>
 	<classpathentry kind="lib" path="json-lib-2.4-jdk15.jar" sourcepath="json-lib-2.4-jdk15-sources.jar"/>
 	<classpathentry kind="lib" path="commons-beanutils-1.9.2.jar"/>

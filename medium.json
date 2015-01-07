@@ -5,11 +5,11 @@
                 "servletname": "cofaxCDS",
                 "servletclass": "org.cofax.cds.CDSServlet",
                 "initparam": {
-                    "configGlossary:installationAt": "Philadelphia, PA",
-                    "configGlossary:adminEmail": "ksm@pobox.com",
-                    "configGlossary:poweredBy": "Cofax",
-                    "configGlossary:poweredByIcon": "/images/cofax.gif",
-                    "configGlossary:staticPath": "/content/static",
+                    "configGlossaryinstallationAt": "Philadelphia, PA",
+                    "configGlossaryadminEmail": "ksm@pobox.com",
+                    "configGlossarypoweredBy": "Cofax",
+                    "configGlossarypoweredByIcon": "/images/cofax.gif",
+                    "configGlossarystaticPath": "/content/static",
                     "templateProcessorClass": "org.cofax.WysiwygTemplate",
                     "templateLoaderClass": "org.cofax.FilesTemplateLoader",
                     "templatePath": "templates"

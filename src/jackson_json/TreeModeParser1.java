@@ -14,62 +14,25 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import net.sf.json.JSON;
 import net.sf.json.JSONObject;
 
 import org.apache.commons.io.IOUtils;
 
+import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.JsonNodeType;
 import com.fasterxml.jackson.module.afterburner.AfterburnerModule;
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 public class TreeModeParser1
 {
 	static int iter = 1500;
-	public static void printer(Iterator<JsonNode> datasetElements)
-	{
-		while (datasetElements.hasNext())
-		{
-			JsonNode datasetElement = datasetElements.next();
-
-			// what is its type
-			// System.out.println(datasetElement.getNodeType());// Prints Object
-			// it is again a container . what are the elements ?
-			Iterator<String> datasetElementFields = datasetElement.fieldNames();
-			while (datasetElementFields.hasNext())
-			{
-				String datasetElementField = datasetElementFields.next();
-				JsonNode dsset = datasetElement.findValue(datasetElementField);
-				// System.out.println(dsset.getNodeType());
-
-				if (dsset.getNodeType() == JsonNodeType.ARRAY)
-				{
-					Iterator<JsonNode> datasetElements1 = dsset.iterator();
-					printer(datasetElements1);
-				}
-				else if (dsset.getNodeType() == JsonNodeType.OBJECT)
-				{
-					Iterator<Entry<String, JsonNode>> datasetElements1 = dsset.fields();
-					printer1(datasetElements1);
-				}
-				else
-					System.out.println(datasetElementField + ":  " + datasetElement.findValue(datasetElementField));
-			}
-
-		}
-	}
-
-	private static void printer1(Iterator<Entry<String, JsonNode>> datasetElements1)
-	{
-		while (datasetElements1.hasNext())
-		{
-			Entry<String, JsonNode> sx = datasetElements1.next();
-			System.out.println(sx.getKey() + ":  " + sx.getValue());
-		}
-
-	}
 
 	public static void main(String[] args) throws MalformedURLException, IOException
 	{
@@ -99,38 +62,47 @@ public class TreeModeParser1
 			double lDateTimejacksoncre = new Date().getTime();
 			ObjectMapper mapper = new ObjectMapper();
 			double lDateTimeNewjacksoncre = new Date().getTime();
-			mapper.registerModule(new AfterburnerModule());
-			
+			//mapper.registerModule(new AfterburnerModule());
+			Medium jack = mapper.readValue(genreJson, Medium.class);
 			double lDateTimejacksonser = new Date().getTime();
-			String jack1 = mapper.writeValueAsString(genreJson);
+			String jack1 = mapper.writeValueAsString(jack);
 			double lDateTimeNewjacksonser = new Date().getTime();
 			
 			double lDateTimejsonser = new Date().getTime();
 			JSONObject jsonObj = json.fromObject(genreJson);
 			double lDateTimeNewjsonser = new Date().getTime();
 			String json1 = jsonObj.toString();
+			//double lDateTimegson = new Date().getTime();
+			Medium str1 = gson.fromJson(genreJson, Medium.class);
+			JsonFactory factory = new JsonFactory();
 			
+			//double lDateTimeNewgson = new Date().getTime();
 			double lDateTimegsonser = new Date().getTime();
-			String str = gson.toJson(genreJson);
+			String str = gson.toJson(str1);
 			double lDateTimeNewgsonser = new Date().getTime();
+			JsonParser parser = new JsonParser();
+			double lDateTimegson = new Date().getTime();
+	        JsonElement element = parser.parse(str);			
+			JsonObject str2 = element.getAsJsonObject();
+			double lDateTimeNewgson = new Date().getTime();
 			
 			double lDateTimejackson = new Date().getTime();
-			String jack2 = mapper.readValue(jack1, String.class);
+			com.fasterxml.jackson.core.JsonParser jackparser = factory.createJsonParser(jack1);
+			String jack2 = jackparser.getValueAsString(jack1);
 			double lDateTimeNewjackson = new Date().getTime();
-			TypeReference<Map<String, Integer>> type= new TypeReference<Map<String,Integer>>() {};
 			double lDateTimejsondes = new Date().getTime();
 			//JSONObject jsonObj1 = JSONObject.fromObject(json1);
 			Object json2 = JSONObject.fromObject(JSONObject.toBean(jsonObj, Medium.class));
 			double lDateTimeNewjsondes = new Date().getTime();
+			//System.out.println(str.substring(1));
 			
-			double lDateTimegson = new Date().getTime();
-			String str1 = gson.fromJson(str, String.class);
-			double lDateTimeNewgson = new Date().getTime();
+			//System.out.println();
+			
 			if (i >= iter-500) {
 				gsonsizeser += str.getBytes().length;
-				gsonsizedes += str1.getBytes().length;
+				gsonsizedes += str2.toString().getBytes().length;
 				jacksonsizeser += jack1.getBytes().length;
-				jacksonsizedes += jack2.getBytes().length;
+				jacksonsizedes += jack2.toString().getBytes().length;
 				jsonsizeser += json1.getBytes().length;
 				jsonsizedes += json2.toString().getBytes().length;
 				jacksontime += (lDateTimeNewjackson - lDateTimejackson);
@@ -143,22 +115,22 @@ public class TreeModeParser1
 				jsontimedes += (lDateTimeNewjsondes - lDateTimejsondes);
 			}
 			if (i == iter-1) {
-				System.out.println(jacksonsizeser/(i-(iter-500)));
-				System.out.println(jacksonsizedes/(i-(iter-500)));
-				System.out.println(jacksontimeser/(i-(iter-500)));
-				System.out.println(jacksontime/(i-(iter-500)));
-				System.out.println(jacksontimecre/(i-(iter-500)));
-				System.out.println(gsonsizeser/(i-(iter-500)));				
-				System.out.println(gsonsizedes/(i-(iter-500)));				
-				System.out.println(gsontimeser/(i-(iter-500)));				
-				System.out.println(gsontime/(i-(iter-500)));
-				System.out.println(gsontimecre/(i-(iter-500)));
-				System.out.println(jsonsizeser/(i-(iter-500)));
-				System.out.println(jsonsizedes/(i-(iter-500)));
-				System.out.println(jsontimeser/(i-(iter-500)));
-				System.out.println(jsontimedes/(i-500));
-				System.out.println(jsontimecre/(i-500));
-				System.out.println(json2.toString());
+				System.out.println("Serializing size:"+jacksonsizeser/(i-(iter-500)));
+				System.out.println("Deserializing size:"+jacksonsizedes/(i-(iter-500)));
+				System.out.println("Deserializing time:"+jacksontimeser/(i-(iter-500)));
+				System.out.println("Serializing time:"+jacksontime/(i-(iter-500)));
+				System.out.println("Creation time:"+jacksontimecre/(i-(iter-500)));
+				System.out.println("Serializing size:"+gsonsizeser/(i-(iter-500)));				
+				System.out.println("Deserializing size:"+gsonsizedes/(i-(iter-500)));				
+				System.out.println("Deserializing time:"+gsontimeser/(i-(iter-500)));				
+				System.out.println("Serializing time:"+gsontime/(i-(iter-500)));
+				System.out.println("Creation time:"+gsontimecre/(i-(iter-500)));
+				System.out.println("Serializing size:"+jsonsizeser/(i-(iter-500)));
+				System.out.println("Deserializing size:"+jsonsizedes/(i-(iter-500)));
+				System.out.println("Deserializing time:"+jsontimeser/(i-(iter-500)));
+				System.out.println("Serializing time:"+jsontimedes/(i-(iter-500)));
+				System.out.println("Creation size:"+jsontimecre/(i-(iter-500)));
+				//System.out.println(jack2);
 			// lets see what type the node is
 			// System.out.println(node.getNodeType()); // prints OBJECT
 			// is it a container
